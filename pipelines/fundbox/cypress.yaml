@@ -1,0 +1,15 @@
+stages:
+  brew check:
+    description: check if nvm exists and if not install it.
+    when:
+      condition:
+        operator: not_equals
+        command: test -d ~/fundbox/automation-e2e/ && echo "exists"
+        compareTo: exists
+    setup:
+      - command: cd ~/fundbox
+      - command: git clone git@github.com:Fundbox/automation-e2e.git
+      - command: cd ~/fundbox/automation-e2e/cypress
+      - command: npm run cypress:install
+
+
